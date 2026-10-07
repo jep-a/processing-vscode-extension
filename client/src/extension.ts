@@ -5,6 +5,8 @@ import { LanguageClient } from 'vscode-languageclient/node';
 import { setupSelectedVersion } from './setupSelectedVersion';
 import { setupCommands } from './setupCommands';
 import { setupLanguageServer } from './setupLanguageServer';
+import { setupColorPicker } from './setupColorPicker';
+import { setupProcessingApi } from './setupProcessingApi';
 import { setupSidebar } from './setupSidebar';
 import { setupDecorators } from './setupDecorators';
 import { setupPDEFiles } from './setupPDEFiles';
@@ -33,6 +35,10 @@ export async function activate(context: ExtensionContext) {
 	// TODO: Override the default save-as
 	// TODO: limit running sketches when a sketch is open
 	// TODO: Sketch explorer context menu (right click)
+
+	// Doesn't need Processing itself, so it works even when no version is found
+	setupProcessingApi(context);
+	setupColorPicker(context);
 
 	// Set up the selected Processing version, awaiting because we don't want to continue until we have a version
 	await setupSelectedVersion(context);

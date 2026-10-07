@@ -140,11 +140,23 @@
 					"default": true,
 					"description": "Automatically save the sketch before running it."
 				},
+				"processing.restartOnSave": {
+					"scope": "window",
+					"type": "boolean",
+					"default": false,
+					"description": "Restart the running sketch when one of its files is saved."
+				},
 				"processing.newWindow": {
 					"scope": "window",
 					"type": "boolean",
 					"default": true,
 					"description": "Open sketches in a new window. If disabled, the current window will be reused."
+				},
+				"processing.inlayHints.parameterNames": {
+					"scope": "resource",
+					"type": "boolean",
+					"default": true,
+					"description": "Show the names of parameters next to the arguments of Processing API calls."
 				}
 			}
 		},

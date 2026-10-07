@@ -2,6 +2,7 @@ import { workspace } from 'vscode';
 import { LanguageClientOptions } from 'vscode-languageclient';
 import { Executable, LanguageClient } from 'vscode-languageclient/node';
 import { state } from './extension';
+import { provideApiCompletions, resolveApiCompletion } from './setupProcessingApi';
 
 export function setupLanguageServer() {
 	// TODO: Listen for version changes and restart the server
@@ -16,6 +17,11 @@ export function setupLanguageServer() {
 		synchronize: {
 			// Notify the server about file changes to '.clientrc files contained in the workspace
 			fileEvents: workspace.createFileSystemWatcher('**/*.{pde,java}')
+		},
+		middleware: {
+			// Adds the documented Processing API to the server's completions
+			provideCompletionItem: provideApiCompletions,
+			resolveCompletionItem: resolveApiCompletion
 		}
 	};
 
